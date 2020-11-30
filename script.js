@@ -1,5 +1,7 @@
-// Selecting container of grid squares.
+// Creating variables for container of grid squares...
 const grid = document.querySelector('#grid');
+// ...And root to access CSS variables.
+const root = document.documentElement;
 
 // Function to create grid squares.
 function createGridSquares(gridDimension) {
@@ -7,7 +9,6 @@ function createGridSquares(gridDimension) {
     const squareSize = 500 / gridDimension;
 
     // Changing size of squares in CSS.
-    const root = document.documentElement;
     root.style.setProperty('--square-size', squareSize + 'px');
 
     // Determining how many squares we need to create.
@@ -56,3 +57,17 @@ clearButton.addEventListener('click', () => {
 
 // Setting the intial grid to be 16x16.
 createGridSquares(16);
+
+// Rainbow Mode.
+function generateRandomColor() {
+    let r = Math.floor(Math.random() * 255);
+    let g = Math.floor(Math.random() * 255);
+    let b = Math.floor(Math.random() * 255);
+
+    let randomColor = `rgb(${r}, ${g}, ${b})`;
+    return randomColor; 
+}
+
+function rainbowMode(randomColor) {
+    root.style.setProperty('--square-color', randomColor);
+}
