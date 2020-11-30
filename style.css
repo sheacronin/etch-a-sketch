@@ -1,5 +1,6 @@
 :root {
     --square-size: 31.25px;
+    --square-color: black;
 }
 
 body {
@@ -22,6 +23,22 @@ button {
     border: none;
 }
 
+a {
+    text-decoration: none;
+    color: #C9ADA7;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    background-color: #22223B;
+    width: 100vw;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #grid {
     margin: 30px auto;
     display: flex;
@@ -40,5 +57,5 @@ button {
 }
 
 .grid-square-filled {
-    background-color: black;
+    background-color: var(--square-color);
 }
