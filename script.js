@@ -3,6 +3,9 @@ const grid = document.querySelector('#grid');
 // ...And root to access CSS variables.
 const root = document.documentElement;
 
+// Initializing Rainbow Mode as off.
+let isRainbowMode = false;
+
 // Function to create grid squares.
 function createGridSquares(gridDimension) {
     // Determinining what size the squares should be.
@@ -18,6 +21,10 @@ function createGridSquares(gridDimension) {
         gridSquare.classList.add('grid-square');
 
         // Adding event listeners to each grid square to fill in.
+        if (isRainbowMode) { // If Rainbow Mode is active, squares will init with random hover colors.
+            gridSquare.addEventListener('mouseover', setRandomSquareColor);
+        }
+        
         gridSquare.addEventListener('mouseover', addFilledClass);
 
         grid.appendChild(gridSquare);
@@ -68,6 +75,26 @@ function generateRandomColor() {
     return randomColor; 
 }
 
-function rainbowMode(randomColor) {
-    root.style.setProperty('--square-color', randomColor);
+function setRandomSquareColor(e) {
+    let randomColor = generateRandomColor();
+    e.target.style.setProperty('--square-color', randomColor);
 }
+
+function toggleRainbowMode(e) {
+    isRainbowMode = !isRainbowMode;
+    if (isRainbowMode) {
+        grid.childNodes.forEach(gridSquare => gridSquare.addEventListener(
+            'mouseover', setRandomSquareColor
+        ));
+        e.target.classList.add('active-rainbow-mode');
+    } else {
+        grid.childNodes.forEach(gridSquare => gridSquare.removeEventListener(
+            'mouseover', setRandomSquareColor
+        ));
+        e.target.classList.remove('active-rainbow-mode');
+    }
+}
+
+// Storing Rainbow Mode button and adding event listener.
+const rainbowModeButton = document.querySelector('#rainbow-mode');
+rainbowModeButton.addEventListener('click', toggleRainbowMode)

@@ -1,6 +1,7 @@
 :root {
     --square-size: 31.25px;
     --square-color: black;
+    --grid-size: 500px;
 }
 
 body {
@@ -58,4 +59,8 @@ footer {
 
 .grid-square-filled {
     background-color: var(--square-color);
+}
+
+.active-rainbow-mode {
+    background: linear-gradient(90deg,#FFAAAA, #AAAAFF);
 }
