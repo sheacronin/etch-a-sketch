@@ -4,7 +4,7 @@
     --grid-size: 500px;
 }
 
-@media (max-width: 400px) {
+@media (max-device-width: 500px) {
     :root {
         --grid-size: 300px;
     }
