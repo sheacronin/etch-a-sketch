@@ -6,7 +6,7 @@
 
 @media (max-device-width: 500px) {
     :root {
-        --grid-size: 300px;
+        --grid-size: 330px;
     }
 }
 
@@ -36,7 +36,7 @@ a {
 }
 
 footer {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     background-color: #22223B;
     width: 100vw;

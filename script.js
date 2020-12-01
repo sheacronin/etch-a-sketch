@@ -1,6 +1,23 @@
-// Creating variables for container of grid squares...
+// Creating variable for container of grid squares.
 const grid = document.querySelector('#grid');
-// ...And root to access CSS variables.
+let gridSize = parseInt(getComputedStyle(grid).width);
+
+// Updates grid size when window size changes.
+function updateGridSize() {
+    gridSize = parseInt(getComputedStyle(grid).width);
+}
+
+// Updates square size when window size changes.
+function updateSquareSize() {
+    let gridDimension = Math.sqrt(grid.childElementCount);
+    let squareSize = gridSize / gridDimension;
+    root.style.setProperty('--square-size', squareSize + 'px');
+}
+
+window.addEventListener('resize', updateGridSize);
+window.addEventListener('resize', updateSquareSize);
+
+// Root variable to access CSS variables.
 const root = document.documentElement;
 
 // Initializing Rainbow Mode as off.
@@ -9,7 +26,7 @@ let isRainbowMode = false;
 // Function to create grid squares.
 function createGridSquares(gridDimension) {
     // Determinining what size the squares should be.
-    const squareSize = 500 / gridDimension;
+    const squareSize = gridSize / gridDimension;
 
     // Changing size of squares in CSS.
     root.style.setProperty('--square-size', squareSize + 'px');
