@@ -4,6 +4,12 @@
     --grid-size: 500px;
 }
 
+@media (max-width: 480px) {
+    :root {
+        --grid-size: 300px;
+    }
+}
+
 body {
     margin: 0 auto;
     text-align: center;
@@ -45,8 +51,8 @@ footer {
     display: flex;
     flex-wrap: wrap;
     background-color: lightgrey;
-    width: 500px;
-    height: 500px;
+    width: var(--grid-size);
+    height: var(--grid-size);
 }
 
 .grid-square {
