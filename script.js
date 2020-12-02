@@ -39,16 +39,24 @@ function createGridSquares(gridDimension) {
 
         // Adding event listeners to each grid square to fill in.
         if (isRainbowMode) { // If Rainbow Mode is active, squares will init with random hover colors.
-            gridSquare.addEventListener('mouseover', setRandomSquareColor);
+            gridSquare.addEventListener('pointerover', setRandomSquareColor);
+            gridSquare.addEventListener('touchmove', setRandomSquareColor);
         }
         
-        gridSquare.addEventListener('mouseover', addFilledClass);
+        gridSquare.addEventListener('pointerover', addFilledClass);
+        gridSquare.addEventListener('touchmove', addFilledClass);
 
         grid.appendChild(gridSquare);
     }
 }
 
 function addFilledClass(e) {
+    if (e.type === 'touchmove') {
+        let touchedSquare = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+        if (touchedSquare.classList.contains('grid-square')) {
+            touchedSquare.classList.add('grid-square-filled');
+        }
+    }
     e.target.classList.add('grid-square-filled');
 }
 
@@ -94,20 +102,30 @@ function generateRandomColor() {
 
 function setRandomSquareColor(e) {
     let randomColor = generateRandomColor();
+
+    if (e.type === 'touchmove') {
+        let touchedSquare = document.elementFromPoint(e.touches[0].clientX, e.touches[0].clientY);
+        if (touchedSquare.classList.contains('grid-square')) {
+            touchedSquare.style.setProperty('--square-color', randomColor);
+        }
+    }
+
     e.target.style.setProperty('--square-color', randomColor);
 }
 
 function toggleRainbowMode(e) {
     isRainbowMode = !isRainbowMode;
     if (isRainbowMode) {
-        grid.childNodes.forEach(gridSquare => gridSquare.addEventListener(
-            'mouseover', setRandomSquareColor
-        ));
+        grid.childNodes.forEach(gridSquare => {
+            gridSquare.addEventListener('pointerover', setRandomSquareColor);
+            gridSquare.addEventListener('touchmove', setRandomSquareColor);
+        });
         e.target.classList.add('active-rainbow-mode');
     } else {
-        grid.childNodes.forEach(gridSquare => gridSquare.removeEventListener(
-            'mouseover', setRandomSquareColor
-        ));
+        grid.childNodes.forEach(gridSquare => {
+            gridSquare.removeEventListener('pointerover', setRandomSquareColor);
+            gridSquare.removeEventListener('touchmove', setRandomSquareColor);
+        });
         e.target.classList.remove('active-rainbow-mode');
     }
 }

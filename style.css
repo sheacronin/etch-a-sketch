@@ -4,12 +4,6 @@
     --grid-size: 500px;
 }
 
-@media (max-device-width: 500px) {
-    :root {
-        --grid-size: 330px;
-    }
-}
-
 body {
     margin: 0 auto;
     text-align: center;
@@ -36,7 +30,7 @@ a {
 }
 
 footer {
-    position: fixed;
+    position: relative;
     bottom: 0;
     background-color: #22223B;
     width: 100vw;
@@ -44,6 +38,10 @@ footer {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+footer p {
+    margin: 20px;
 }
 
 #grid {
@@ -69,4 +67,13 @@ footer {
 
 .active-rainbow-mode {
     background: linear-gradient(90deg,#FFAAAA, #AAAAFF);
+}
+
+@media (max-device-width: 500px) {
+    :root {
+        --grid-size: 330px;
+    }
+    footer {
+        position: fixed;
+    }
 }
