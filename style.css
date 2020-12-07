@@ -30,7 +30,7 @@ a {
 }
 
 footer {
-    position: relative;
+    position: fixed;
     bottom: 0;
     background-color: #22223B;
     width: 100vw;
@@ -72,8 +72,5 @@ footer p {
 @media (max-device-width: 500px) {
     :root {
         --grid-size: 330px;
-    }
-    footer {
-        position: fixed;
     }
 }
